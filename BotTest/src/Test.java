@@ -14,9 +14,9 @@ public class Test {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		user = "CPPemoBot";
-		pass = "oauth:pz7h43jttozdgcy9rehftopwatzdj7";
-		name = "ÇPPemoBot";
+		user = "";
+		pass = "";
+		name = "";
 		
 		try {
 			Socket socket = new Socket("irc.twitch.tv",6667);
@@ -25,7 +25,7 @@ public class Test {
 			
 			writer.write("PASS " + pass + "\r\n");
 			writer.write("NICK " + user + "\r\n");
-			writer.write("JOIN #dashy93\r\n");
+			writer.write("JOIN\r\n");
 			writer.flush();
 			
 			writer.write("CAP REQ :twitch.tv/tags twitch.tv/commands twitch.tv/membership\r\n");
@@ -40,12 +40,12 @@ public class Test {
 					writer.write("PONG irc.twitch.tv" + "\r\n");
 					writer.flush();
 				} else if(parts[2].equals("PRIVMSG")){
-					if(parts[3].equals("#dashy93")){
+					if(parts[3].equals("#")){
 						if (parts[3].substring(1).equals("!song")){
-							writer.write("PRIVMSG #dashy93 :Song: " + readFile(new File(name))+"\r\n");
+							writer.write("PRIVMSG # :Song: " + readFile(new File(name))+"\r\n");
 							writer.flush();
 						}else if (parts[4].substring(1).equals("!bot")){
-							writer.write("PRIVMSG #dashy93 :Hello, I am your friendly neighbourhood Bot\r\n");
+							writer.write("PRIVMSG # :Hello, I am your friendly neighbourhood Bot\r\n");
 							writer.flush();
 						}
 					}
